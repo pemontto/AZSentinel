@@ -28,6 +28,8 @@ class AlertProp {
 
     [string] $PlaybookName
 
+    [bool] $CreateIncident
+
     static [string] TriggerOperatorSwitch([string]$value) {
         switch ($value) {
             "gt" { $value = "GreaterThan" }
@@ -39,7 +41,7 @@ class AlertProp {
         return $value
     }
 
-    AlertProp ($Name, $DisplayName, $Description, $Severity, $Enabled, $Query, $QueryFrequency, $QueryPeriod, $TriggerOperator, $TriggerThreshold, $suppressionDuration, $suppressionEnabled, $Tactics, $PlaybookName) {
+    AlertProp ($Name, $DisplayName, $Description, $Severity, $Enabled, $Query, $QueryFrequency, $QueryPeriod, $TriggerOperator, $TriggerThreshold, $suppressionDuration, $suppressionEnabled, $Tactics, $PlaybookName, $CreateIncident) {
         $this.name = $Name
         $this.DisplayName = $DisplayName
         $this.Description = $Description
@@ -54,6 +56,7 @@ class AlertProp {
         $this.SuppressionEnabled = if ($suppressionEnabled) { $suppressionEnabled } else { $false }
         $this.Tactics = $Tactics
         $this.PlaybookName = $PlaybookName
+        $this.CreateIncident = $CreateIncident
     }
 }
 

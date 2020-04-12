@@ -100,7 +100,11 @@ function New-AzSentinelAlertRule {
 
         [Parameter(Mandatory = $false)]
         [AllowEmptyString()]
-        [string] $PlaybookName = $null
+        [string] $PlaybookName = $null,
+
+        [Parameter(Mandatory = $false)]
+        [AllowEmptyString()]
+        [bool] $CreateIncident = $true
     )
 
     begin {
@@ -170,7 +174,8 @@ function New-AzSentinelAlertRule {
                 $SuppressionDuration,
                 $SuppressionEnabled,
                 $Tactics,
-                $PlaybookName
+                $PlaybookName,
+                $CreateIncident
             )
             $body = [AlertRule]::new( $item.name, $item.etag, $bodyAlertProp, $item.Id)
         }
